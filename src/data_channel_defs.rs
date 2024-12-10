@@ -1,10 +1,10 @@
-// Copyright (c) 2024 INVAP, open@invap.com.ar
-// SPDX-License-Identifier: AGPL-3.0-or-later OR Fundacion-Sadosky-Commercial
+// Copyright (c) 2024 Carlos Gustavo Lopez Pombo
+// SPDX-License-Identifier: AGPL-3.0-or-later OR Carlos Gustavo Lopez Pombo-Commercial
 
 // Constants
 const BUFFER_SIZE: usize = 65536; // 64K (OS default) max string length.
 pub const MAX_EVENT_SIZE: usize = 1010 + 2; // 1010 bytes + 2 (padding for the null terminator)
-const MAX_EVENT_PKG_SIZE: usize = MAX_EVENT_SIZE + 12;
+const MAX_EVENT_PKG_SIZE: usize = MAX_EVENT_SIZE + 12; // MAX_EVENT_SIZE: event, 8: time, 4: event_type
 pub const BUFFER_CAPACITY: usize = BUFFER_SIZE / MAX_EVENT_PKG_SIZE;
 
 // Event Types Enum
