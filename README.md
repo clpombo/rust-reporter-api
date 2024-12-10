@@ -32,7 +32,7 @@ rust-reporter-api/
 
 
 ## Implementation of the reporter API
-[Figure 1](#class-diagram) shows that architectural view of the implementation of the C reporting API.
+[Figure 1](#class-diagram) shows that architectural view of the implementation of the Rust reporting API.
 
 <figure id="class-diagram" style="text-align: center;">
   <img src="./README_images/class-diagram.png" width="600" alt="The architectural view of the implementation of the Rust reporting API.">
