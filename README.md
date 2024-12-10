@@ -35,7 +35,7 @@ rust-reporter-api/
 [Figure 1](#class-diagram) shows that architectural view of the implementation of the Rust reporting API.
 
 <figure id="class-diagram" style="text-align: center;">
-  <img src="./README_images/class-diagram-new.png" width="600" alt="The architectural view of the implementation of the Rust reporting API.">
+  <img src="./README_images/class-diagram.png" width="600" alt="The architectural view of the implementation of the Rust reporting API.">
   <figcaption style="font-style: italic;"><b>Figure 1</b>: The architectural view of the implementation of the Rust reporting API.
   </figcaption>
 </figure>
