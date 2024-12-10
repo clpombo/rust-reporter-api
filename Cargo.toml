@@ -1,0 +1,13 @@
+# Copyright (c) 2024 INVAP, open@invap.com.ar
+# SPDX-License-Identifier: AGPL-3.0-or-later OR Fundacion-Sadosky-Commercial
+
+[package]
+name = "rust-reporter-api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[lib]
+name = "rust_reporter_api"
+path = "src/rust-reporter-api.rs"
