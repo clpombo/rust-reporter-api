@@ -1,5 +1,5 @@
-// Copyright (c) 2024 INVAP, open@invap.com.ar
-// SPDX-License-Identifier: AGPL-3.0-or-later OR Fundacion-Sadosky-Commercial
+// Copyright (c) 2024 Carlos Gustavo Lopez Pombo
+// SPDX-License-Identifier: AGPL-3.0-or-later OR Carlos Gustavo Lopez Pombo-Commercial
 
 use std::time::Duration;
 use rust_reporter_api::data_channel_defs::{
