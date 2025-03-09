@@ -15,7 +15,8 @@ use data_channel_defs::{
         ProcessEvent,
         ComponentEvent,
         SelfLoggableComponentLogInitEvent,
-        SelfLoggableComponentEvent
+        SelfLoggableComponentEvent,
+        EndOfReportEvent
     }
 };
 use data_channel_defs::{
@@ -33,11 +34,16 @@ static mut BUFFER_USED: usize = 0;  // Tracks how many items are in the buffer
 
 pub static REPORTING_CLK: LazyLock<Mutex<Stopwatch>> = LazyLock::new(|| Mutex::new(Stopwatch::new()));
 
-fn pack_and_send(pkg: ReporterPkg) {
+fn pack_and_send(pkg: ReporterPkg, end_of_report: bool) {
     unsafe {
+        if end_of_report {
+            for _i in BUFFER_USED..BUFFER_CAPACITY-1 {
+                BUFFER[BUFFER_USED] = pkg;
+                BUFFER_USED += 1;
+            }
+        }
         BUFFER[BUFFER_USED] = pkg;
         BUFFER_USED += 1;
-
         if BUFFER_USED == BUFFER_CAPACITY {
             let buffer_slice = std::slice::from_raw_parts(
                 BUFFER.as_ptr() as *const u8,
@@ -66,6 +72,7 @@ pub fn report(event_type: EventType, event: &str) {
     }
     data[MAX_EVENT_SIZE - 2] = 0u8;     // NULL terminator for string.
     data[MAX_EVENT_SIZE - 1] = 0u8;
+    let end_of_report;
     match event_type {
         TimedEvent
         | StateEvent
@@ -77,12 +84,21 @@ pub fn report(event_type: EventType, event: &str) {
                 time,
                 event_type,
                 event: data
-            }
+            };
+            end_of_report = false;
         },
+        EndOfReportEvent => {
+            pkg = ReporterPkg {
+                time,
+                event_type,
+                event: data
+            };
+            end_of_report = true;
+        }
         NoneEvent => {
             panic!("None package type!")
         }
     };
     // Send the packaged event
-    pack_and_send(pkg);
+    pack_and_send(pkg, end_of_report);
 }
