@@ -41,7 +41,7 @@ rust-reporter-api/
 </figure>
 
 There, we find three main components:
-1. the Rust reporting API (itself) [`rust-reporting-api.rs`](https://github.com/clpombo/rust-reporter-api/blob/main/src/rust-reporter-api.rs): it is the main component of the library as it implements the function [`report`](https://github.com/clpombo/rust-reporter-api/blob/main/src/rust-reporter-api.rs#L57), used by the software under test (SUT) for reporting events occurring along its execution (see Section [Rust reporting API component](#rust-reporting-api-component) for more details).
+1. the Rust reporting API (itself) [`rust-reporting-api.rs`](https://github.com/clpombo/rust-reporter-api/blob/main/src/rust-reporter-api.rs): it is the main component of the library as it implements the function [`report`](https://github.com/clpombo/rust-reporter-api/blob/main/src/rust-reporter-api.rs#L63), used by the software under test (SUT) for reporting events occurring along its execution (see Section [Rust reporting API component](#rust-reporting-api-component) for more details).
 2. the data channel definitions [`data_channel_defs.rs`](https://github.com/clpombo/rust-reporter-api/blob/main/src/data_channel_defs.h): declares the constants and data structures used for managing the communication channel that connects the SUT and the reporting application (see Section [Data channel definitions](#data-channel-definitions) for more details).
 3. the Stopwatch [`stopwatch.rs`](https://github.com/clpombo/rust-reporter-api/blob/main/src/stopwatch.c): implements a stopwatch for time-stamping events (see Section [Stopwatch component](#stopwatch-component) for more details).
 
@@ -70,7 +70,7 @@ The function `report` takes the event type and string passed as actual parameter
 ### Data channel definitions
 This component provides the definitions used for managing the communication channel between the SUT and the reporting application:
 - maximum size of the buffer: 
-```c
+```rust
 const BUFFER_SIZE: usize = 65536; // 64K (OS default) max string length.
 ```
 - maximum size for a single event:
@@ -98,7 +98,8 @@ pub enum EventType {
     ComponentEvent = 3,
     SelfLoggableComponentLogInitEvent = 4,
     SelfLoggableComponentEvent = 5,
-    NoneEvent = 6
+    EndOfReportEvent = 6,
+    NoneEvent = 7
 }
 ```
 - the package sent across the communication channel consisting of a time-stamp, the event type and an event detailed as a fixed-size string:
