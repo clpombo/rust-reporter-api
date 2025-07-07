@@ -15,10 +15,8 @@ pub enum EventType {
     StateEvent = 1,
     ProcessEvent = 2,
     ComponentEvent = 3,
-    SelfLoggableComponentLogInitEvent = 4,
-    SelfLoggableComponentEvent = 5,
-    EndOfReportEvent = 6,
-    NoneEvent = 7
+    EndOfReportEvent = 4,
+    NoneEvent = 5
 }
 
 // Reporter package structure containing event and timestamp

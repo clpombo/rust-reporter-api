@@ -96,10 +96,8 @@ pub enum EventType {
     StateEvent = 1,
     ProcessEvent = 2,
     ComponentEvent = 3,
-    SelfLoggableComponentLogInitEvent = 4,
-    SelfLoggableComponentEvent = 5,
-    EndOfReportEvent = 6,
-    NoneEvent = 7
+    EndOfReportEvent = 4,
+    NoneEvent = 5
 }
 ```
 - the package sent across the communication channel consisting of a time-stamp, the event type and an event detailed as a fixed-size string:

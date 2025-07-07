@@ -14,8 +14,6 @@ use data_channel_defs::{
         StateEvent,
         ProcessEvent,
         ComponentEvent,
-        SelfLoggableComponentLogInitEvent,
-        SelfLoggableComponentEvent,
         EndOfReportEvent
     }
 };
@@ -77,9 +75,7 @@ pub fn report(event_type: EventType, event: &str) {
         TimedEvent
         | StateEvent
         | ProcessEvent
-        | ComponentEvent
-        | SelfLoggableComponentLogInitEvent
-        | SelfLoggableComponentEvent => {
+        | ComponentEvent => {
             pkg = ReporterPkg {
                 time,
                 event_type,
